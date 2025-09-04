@@ -7,23 +7,13 @@ function DataFetcher() {
 
   useEffect(() => {
     fetch("https://dummyjson.com/products")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((json) => {
-        console.log(json)
-        if (json && Array.isArray(json.products) && json.products.length > 0) {
-          setData(json.products); 
-        } else {
-          setData([]); 
-        }
+          setData(json); 
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.message);
+        setError(err);
         setLoading(false);
       });
   }, []);
@@ -36,14 +26,14 @@ function DataFetcher() {
     return <div>An error occurred: {error}</div>;
   }
 
-  if (Array.isArray(data) && data.length === 0) {
-    return <pre>[]</pre>; 
+  if (data.length === 0) {
+    return <div>No data found</div>; 
   }
 
   return (
     <div>
-      <h2>Data Fetched from API</h2>
-      <pre>{JSON.stringify({ products: data }, null, 3)}</pre>
+      <h1>Data Fetched from API</h1>
+      <pre>{JSON.stringify( data , null, 2)}</pre>
 
     </div>
   );
