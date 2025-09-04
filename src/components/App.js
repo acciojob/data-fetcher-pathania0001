@@ -3,10 +3,10 @@ import DataFetcher from "./DataFetcher";
 
 function App() {
   return (
-    <div>
+    <>
       <h1>Product Data</h1>
       <DataFetcher />
-    </div>
+    </>
   );
 }
 
