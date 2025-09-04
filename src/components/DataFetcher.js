@@ -6,7 +6,7 @@ function DataFetcher() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/producs")
+    fetch("https://dummyjson.com/products")
       .then((res) => res.json())
       .then((json) => {
           setData(json); 
@@ -26,7 +26,7 @@ function DataFetcher() {
     return <div>An error occurred: {error.message}</div>;
   }
 
-  if (data.length === 0) {
+  if (!data) {
     return <div>No data found</div>; 
   }
 
