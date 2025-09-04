@@ -43,7 +43,7 @@ function DataFetcher() {
   return (
     <div>
       <h2>Data Fetched from API</h2>
-      <pre>{JSON.stringify({ products: data }, null, 1)}</pre>
+      <pre>{JSON.stringify({ products: data }, null, 2)}</pre>
 {/* ✅ array only */}
     </div>
   );
