@@ -14,6 +14,7 @@ function DataFetcher() {
         return res.json();
       })
       .then((json) => {
+        console.log(json)
         if (json && Array.isArray(json.products) && json.products.length > 0) {
           setData(json.products); // ✅ only keep the array
         } else {
@@ -42,7 +43,8 @@ function DataFetcher() {
   return (
     <div>
       <h2>Data Fetched from API</h2>
-      <pre>{JSON.stringify(data, null, 2)}</pre> {/* ✅ array only */}
+      <pre>{JSON.stringify({ products: data }, null, 2)}</pre>
+{/* ✅ array only */}
     </div>
   );
 }
