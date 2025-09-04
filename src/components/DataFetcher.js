@@ -14,10 +14,10 @@ function DataFetcher() {
         return res.json();
       })
       .then((json) => {
-        if (json && json.products && json.products.length > 0) {
-          setData(json.products);
+        if (json && Array.isArray(json.products) && json.products.length > 0) {
+          setData(json.products); // ✅ only keep the array
         } else {
-          setData([]); // ✅ important: empty array, not null
+          setData([]); // ✅ empty array if no products
         }
         setLoading(false);
       })
@@ -32,20 +32,17 @@ function DataFetcher() {
   }
 
   if (error) {
-    // ✅ Cypress expects this exact string prefix
     return <div>An error occurred: {error}</div>;
   }
 
   if (Array.isArray(data) && data.length === 0) {
-    // ✅ Cypress expects [] explicitly
-    return <div><pre>[]</pre></div>;
+    return <pre>[]</pre>; // ✅ Cypress expects exactly []
   }
 
   return (
     <div>
-      {/* ✅ Cypress looks for this string */}
       <h2>Data Fetched from API</h2>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <pre>{JSON.stringify(data, null, 2)}</pre> {/* ✅ array only */}
     </div>
   );
 }
