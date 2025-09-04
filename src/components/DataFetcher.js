@@ -16,9 +16,9 @@ function DataFetcher() {
       .then((json) => {
         console.log(json)
         if (json && Array.isArray(json.products) && json.products.length > 0) {
-          setData(json.products); // ✅ only keep the array
+          setData(json.products); 
         } else {
-          setData([]); // ✅ empty array if no products
+          setData([]); 
         }
         setLoading(false);
       })
@@ -37,14 +37,14 @@ function DataFetcher() {
   }
 
   if (Array.isArray(data) && data.length === 0) {
-    return <pre>[]</pre>; // ✅ Cypress expects exactly []
+    return <pre>[]</pre>; 
   }
 
   return (
     <div>
       <h2>Data Fetched from API</h2>
       <pre>{JSON.stringify({ products: data }, null, 2)}</pre>
-{/* ✅ array only */}
+
     </div>
   );
 }
